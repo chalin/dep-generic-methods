@@ -305,12 +305,19 @@ Specifically, it allows top level functions, local function definitions, static
 methods, and instance methods to be parameterized over type variables.  The
 function call and method invocation syntax is extended to allow formal type
 parameters to be instantiated with their corresponding actual type arguments.
-Generic function types are second class in the type system, and do not need to
-be reified at runtime.  Consequently: there is no syntax for a generic function
-type; type parameters may not be instantiated with generic function types;
-functions and methods may not be abstracted over generic functions.
 Technically, the proposal is to add prenex, predicative F-bounded quantification
 to Dart methods and functions.
+
+Currently in Dart, all type parameters of raw generic class types are
+implicitly instantiated with `dynamic`. In order extend this uniformly to
+generic functions, the rules of this proposal only allow closurization of
+*instantiated* generic functions. When no type arguments are provided, generic
+functions are implicitly instantiated with `dynamic`. Thus, while non-generic
+function types are denotable (via closurization expressions), because of the
+rules of this proposal, generic function types are *not* denotable---i.e., no
+Dart expression can be of a generic function type. Despite this, generic
+function types are reified, since passing type arguments to a generic method
+is a runtime operation.
 
 Getters and setters may not be generic.  Similarly, constructors, named
 constructors and factory constructors may not be generic.
