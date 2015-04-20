@@ -4,9 +4,7 @@
 ## Contact information
 
 1. **Leaf Petersen**
-
 2. **leafp@google.com**
-
 3. **[https://github.com/leafpetersen/dep-generic-methods](https://github.com/leafpetersen/dep-generic-methods)**
 
 Other stakeholders:
@@ -298,7 +296,16 @@ main() {
 
 ```
 
-## Proposal
+## Terminology
+
+Informally speaking, a Dart `typedef` defines a function type (e.g., see [[1][], [2][]]), but the technically more precise statement is that a `typedef` defines a function-type *alias*. 
+
+In *this* proposal, the unqualified terms *function type* and *generic function type* will refer to the **type denotation / semantic type** of a function and generic function, respectively. When referring to `typedef` definitions, these terms will be qualified with "alias" as in _generic function type **alias**_.
+
+  [1]: https://www.dartlang.org/docs/dart-up-and-running/ch02.html#typedefs
+  [2]: https://www.dartlang.org/articles/emulating-functions/#function-types
+
+## Proposal details
 
 The proposal is to add a simple form of generic methods and functions to Dart.
 Specifically, it allows top level functions, local function definitions, static
